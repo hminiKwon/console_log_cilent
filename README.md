@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Console Log Client
 
-## Getting Started
+Next.js 14 (App Router) + TypeScript playground that now follows Feature-Sliced Design (FSD) for predictable growth.
 
-First, run the development server:
+## Tech Stack
+- Next.js 14 (App Router)
+- TypeScript / ESLint (core-web-vitals)
+- Tailwind CSS (via `globals.css`)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Directory Layout (FSD)
+
+```
+src/
+├─ app/                # Next.js routes, layouts, metadata
+├─ processes/          # Cross-page business flows (optional)
+├─ widgets/            # Page-level sections (Hero, Sidebar, etc.)
+├─ features/           # User-facing functionality (LoginButton, Filters, ...)
+├─ entities/           # Reusable domain models (User, Project, ...)
+└─ shared/
+   ├─ api/             # API clients, DTO helpers
+   ├─ config/          # Runtime configuration, constants
+   ├─ lib/             # Utilities and adapters
+   ├─ styles/          # Global tokens, mixins
+   └─ ui/              # Pure UI primitives
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Layer Rules
+1. Dependencies flow upward: `shared → entities → features → widgets → app/pages`.
+2. Even inside a layer, expose only an explicit public API (`index.ts`, `model`, `api`) per slice.
+3. Keep route segments (`src/app/**`) dependent on widgets/features, not on bare entities.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Slice Template (Suggested)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+<layer>/<slice>/
+├─ ui/        # React components
+├─ model/     # Hooks, stores, entity adapters
+├─ api/       # Server actions, fetchers
+└─ index.ts   # Public entry point
+```
 
-## Learn More
+## Development
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev         # http://localhost:3000 (loads .env.dev)
+npm run build       # uses .env.prd
+npm run start       # serves built app with .env.prd
+npm run lint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create new slices under the appropriate layer and import them through the `@/` alias (which maps to `src/`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment & API
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. 루트에 `.env.dev`, `.env.prd` 파일을 만들고 각각 `.env.dev.example`, `.env.prd.example` 내용을 복사한 뒤 값을 채워주세요.
+   ```
+   NEXT_PUBLIC_APP_ENV=development
+   NEXT_PUBLIC_API_BASE_URL_DEV=http://localhost:4000
+   NEXT_PUBLIC_API_BASE_URL_PRD=https://api.console-log.com
+   NEXT_PUBLIC_API_BASE_URL=http://localhost:4000  # dev fallback 예시
+   ```
+2. `src/shared/config/env.ts`가 현재 실행 환경(dev/prd)에 맞는 API 베이스 URL을 계산합니다.
+3. `src/shared/api/http-client.ts`는 Axios 인스턴스를 생성해
+   - `withCredentials: true`로 Refresh Token(HttpOnly 쿠키) 교환
+   - `Authorization: Bearer <accessToken>` 헤더 자동 부착
+4. `src/entities/session/model/access-token-store.ts` (Zustand)이 Access Token을 중앙 관리하며, 로그인 성공 시 `features/auth/api/login.ts`에서 토큰을 저장합니다.

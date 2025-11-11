@@ -1,0 +1,72 @@
+"use client";
+
+import { type ReactNode, useEffect, useState } from "react";
+import { SidebarNav } from "./sidebar-nav";
+
+type SidebarShellProps = {
+  children: ReactNode;
+};
+
+/**
+ * 페이지 어디서든 사이드바를 유지하고 토글할 수 있는 레이아웃 컨테이너.
+ * - 데스크톱: 사이드바 열림/닫힘 시 폭이 부드럽게 변하면서 콘텐츠 영역 확장
+ * - 모바일: 오프캔버스 드로어 형태로 동작
+ */
+export function SidebarShell({ children }: SidebarShellProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setIsOpen(mediaQuery.matches);
+    sync();
+    mediaQuery.addEventListener("change", sync);
+    return () => mediaQuery.removeEventListener("change", sync);
+  }, []);
+
+  const toggleSidebar = () => setIsOpen((prev) => !prev);
+
+  return (
+    <div className="min-h-screen bg-linear-to-b from-slate-950 via-slate-940 to-black text-white">
+      <button
+        type="button"
+        onClick={toggleSidebar}
+        className="fixed left-4 top-4 z-50 flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-white/80 backdrop-blur transition hover:border-white/40 hover:text-white lg:left-8"
+      >
+        {isOpen ? "Close" : "Menu"}
+        <span className="text-lg">{isOpen ? "⟲" : "☰"}</span>
+      </button>
+
+      {/* 모바일 드로어 */}
+      <div
+        className={`fixed inset-y-0 left-0 z-40 w-full max-w-xs border-r border-white/10 bg-slate-900/95 p-6 backdrop-blur-2xl transition-transform duration-500 lg:hidden ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <SidebarNav />
+      </div>
+
+      <div
+        className={`mx-auto flex w-full flex-col px-8 py-20 lg:flex-row ${
+          isOpen ? "gap-8 lg:gap-10" : ""
+        }`}
+      >
+        <div
+          className={`hidden lg:block lg:transition-[width] lg:duration-500 ${
+            isOpen ? "lg:w-80" : "lg:w-0"
+          }`}
+        >
+          <div
+            className={`sticky top-0 transition-all duration-500 ${
+              isOpen
+                ? "pointer-events-auto opacity-100"
+                : "pointer-events-none opacity-0"
+            }`}
+          >
+            <SidebarNav />
+          </div>
+        </div>
+        <main className="flex-1">{children}</main>
+      </div>
+    </div>
+  );
+}
