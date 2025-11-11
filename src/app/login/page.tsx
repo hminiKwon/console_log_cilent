@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LoginExperience } from "@/widgets/auth";
+import { LoginExperience, LoginRedirectGate } from "@/widgets/auth";
 
 export const metadata: Metadata = {
   title: "Login · Console Log Lab",
@@ -7,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function LoginPage() {
-  return <LoginExperience />;
+  return (
+    <LoginRedirectGate>
+      <LoginExperience />
+    </LoginRedirectGate>
+  );
 }
