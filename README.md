@@ -51,6 +51,13 @@ npm run lint
 
 Create new slices under the appropriate layer and import them through the `@/` alias (which maps to `src/`).
 
+## Commit Convention
+
+- 형식: `type(scope): summary` (scope는 선택). 예) `feat(board): add glass panel layout`.
+- 사용 가능한 `type`: `feat`, `fix`, `refactor`, `chore`, `docs`, `style`, `test`, `ci`, `build`, `perf`, `revert`.
+- Summary는 72자 이하, 명령형 동사 사용. 추가 설명이 필요하면 본문에 작성하고, breaking change는 `BREAKING CHANGE:`로 별도 표기.
+- 하나의 커밋은 하나의 논리 변경만 포함하고, 관련 테스트/문서를 함께 갱신합니다.
+
 ## Environment & API
 
 1. 루트에 `.env.dev`, `.env.prd` 파일을 만들고 각각 `.env.dev.example`, `.env.prd.example` 내용을 복사한 뒤 값을 채워주세요.
