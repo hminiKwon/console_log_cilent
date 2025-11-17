@@ -130,28 +130,10 @@ export function AiChatbotExperience() {
 
   return (
     <section className="space-y-6">
-      <GlassPanel className="bg-gradient-to-br from-slate-900/80 to-slate-900/40">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-white/60">
-              AI Chatbot
-            </p>
-            <h1 className="text-2xl font-semibold">대화형 실험실</h1>
-            <p className="text-sm text-white/60">
-              로그인 사용자만 접근할 수 있는 챗봇 영역입니다.
-            </p>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-white/60">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden />
-            데모 모드
-          </div>
-        </div>
-      </GlassPanel>
-
       <GlassPanel className="space-y-4 bg-white/5">
         <div
           ref={scrollRef}
-          className="max-h-[480px] space-y-3 overflow-y-auto rounded-2xl border border-white/10 bg-black/20 p-4"
+          className="max-h-[550px] space-y-3 overflow-y-auto rounded-2xl border border-white/10 bg-black/20 p-4"
         >
           {messages.map((message) => (
             <div
