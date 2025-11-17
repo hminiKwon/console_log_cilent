@@ -41,9 +41,9 @@ export const NAV_SECTIONS: NavSection[] = [
     title: "실험",
     items: [
       {
-        label: "실험실",
-        desc: "새 기능",
-        href: "/lab",
+        label: "AI 챗봇",
+        desc: "대화형 실험",
+        href: "/ai-chatbot",
         requiresAuth: true,
       },
     ],

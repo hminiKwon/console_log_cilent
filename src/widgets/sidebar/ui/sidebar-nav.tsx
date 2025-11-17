@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { NAV_SECTIONS, SOCIAL_LINKS } from "@/entities/navigation";
+import { NAV_SECTIONS } from "@/entities/navigation";
 import { useSession } from "@/entities/session";
 import { logout } from "@/features/auth";
 
