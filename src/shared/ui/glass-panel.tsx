@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { cn } from "@/shared/lib";
+import { cn } from "@/shared/util";
 
 type GlassPanelProps = {
   children: ReactNode;

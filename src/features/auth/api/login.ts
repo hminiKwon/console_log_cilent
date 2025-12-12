@@ -1,4 +1,5 @@
 import { httpClient } from "@/shared/api";
+import { hashPassword } from "@/shared/util";
 import { accessTokenStore } from "@/entities/session";
 
 export type LoginRequest = {
@@ -20,7 +21,12 @@ export type LoginResponse = {
 };
 
 export async function login(request: LoginRequest) {
-	const { data } = await httpClient.post<LoginResponse>("/auth/login", request);
+	const passwordHash = await hashPassword(request.password);
+
+	const { data } = await httpClient.post<LoginResponse>("/auth/login", {
+		...request,
+		password: passwordHash,
+	});
 	accessTokenStore.getState().setToken(data.tokens.access_token);
 	return data;
 }
