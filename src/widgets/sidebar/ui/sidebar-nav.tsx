@@ -38,17 +38,17 @@ export function SidebarNav() {
   };
 
   return (
-    <aside className="flex max-h-[calc(100vh-4rem)] w-full flex-col overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-8 text-white backdrop-blur-2xl lg:w-80">
-      <div className="space-y-4">
-        <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+    <aside className="flex max-h-[calc(100vh-4rem)] w-full flex-col overflow-hidden rounded-4xl border border-slate-200 bg-white/90 p-6 text-slate-900 shadow-lg shadow-emerald-50/60 backdrop-blur-2xl lg:w-80">
+      <div className="space-y-3">
+        <p className="text-sm uppercase tracking-[0.3em] text-slate-500">
           Console Log
         </p>
         {!hasHydrated ? (
-          <div className="h-11 w-full rounded-2xl border border-white/10 bg-white/5" />
+          <div className="h-11 w-full rounded-2xl border border-slate-200 bg-slate-100/60" />
         ) : !isAuthenticated ? (
           <Link
             href="/login"
-            className="inline-flex items-center gap-2 rounded-2xl border border-white/30 px-4 py-2 text-sm font-medium text-white transition hover:border-white"
+            className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-100"
           >
             로그인 페이지
             <span aria-hidden>→</span>
@@ -58,13 +58,13 @@ export function SidebarNav() {
             type="button"
             onClick={handleLogout}
             disabled={isLoggingOut}
-            className="inline-flex items-center gap-2 rounded-2xl border border-white/30 px-4 py-2 text-sm font-medium text-white transition hover:border-white disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isLoggingOut ? "로그아웃 중..." : "로그아웃"}
           </button>
         )}
       </div>
-      <div className="mt-8 flex-1 space-y-6 overflow-y-auto pr-1">
+      <div className="mt-6 flex-1 space-y-4 overflow-y-auto pr-1">
         {navSections.map((section) => {
           if (section.items.length === 0) {
             return null;
@@ -76,7 +76,7 @@ export function SidebarNav() {
               <button
                 type="button"
                 onClick={() => toggleSection(section.title)}
-                className="flex w-full items-center justify-between text-[11px] uppercase tracking-[0.35em] text-white/50 transition hover:text-white"
+                className="flex w-full items-center justify-between text-[11px] uppercase tracking-[0.35em] text-slate-500 transition hover:text-slate-900"
                 aria-expanded={!isCollapsed}
               >
                 {section.title}
@@ -90,13 +90,13 @@ export function SidebarNav() {
                       <>
                         <div className="flex items-center justify-between text-sm font-medium">
                           <span>{item.label}</span>
-                          <span className="text-xs text-white/60">
+                          <span className="text-xs text-slate-500">
                             {isActive ? "•" : "→"}
                           </span>
                         </div>
                         <p
                           className={`text-xs ${
-                            isActive ? "text-black/70" : "text-white/60"
+                            isActive ? "text-emerald-800" : "text-slate-500"
                           }`}
                         >
                           {item.desc}
@@ -109,7 +109,7 @@ export function SidebarNav() {
                         <button
                           type="button"
                           key={item.label}
-                          className="w-full rounded-2xl border border-dashed border-white/10 bg-white/0 px-4 py-4 text-left text-white/50"
+                          className="w-full rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-4 py-4 text-left text-slate-500"
                         >
                           {content}
                         </button>
@@ -122,8 +122,8 @@ export function SidebarNav() {
                         href={item.href}
                         className={`block rounded-2xl border px-4 py-4 transition ${
                           isActive
-                            ? "border-white/40 bg-white/90 text-black"
-                            : "border-white/10 bg-white/5 text-white/80 hover:border-white/30 hover:bg-white/10"
+                            ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+                            : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50"
                         }`}
                       >
                         {content}
@@ -143,9 +143,9 @@ export function SidebarNav() {
             href={link.href}
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white/80 transition hover:border-white/40 hover:bg-white/15"
+            className="rounded-2xl border border-emerald-200 bg-white px-4 py-3 text-slate-700 transition hover:border-emerald-300 hover:bg-emerald-50"
           >
-            <span className="text-white">{link.icon}</span> {link.label}
+            <span className="text-emerald-700">{link.icon}</span> {link.label}
           </a>
         ))}
       </div> */}

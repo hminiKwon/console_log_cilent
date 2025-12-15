@@ -9,13 +9,15 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <div className="space-y-8">
-      <GlassPanel className="bg-gradient-to-br from-slate-900/80 to-slate-900/40">
-        <p className="text-sm uppercase tracking-[0.4em] text-white/60">
+    <div className="space-y-6">
+      <GlassPanel className="bg-gradient-to-br from-white to-sky-50">
+        <p className="text-sm uppercase tracking-[0.4em] text-emerald-700">
           Photo Archive
         </p>
-        <h1 className="text-4xl font-semibold text-white">감각적인 사진 보드</h1>
-        <p className="text-sm text-white/70">
+        <h1 className="text-4xl font-semibold text-slate-900">
+          감각적인 사진 보드
+        </h1>
+        <p className="text-sm text-slate-600">
           HDR 최적화, 자동 리사이즈, EXIF 히스토리 등 실험적인 기능을 제공합니다.
         </p>
       </GlassPanel>

@@ -25,22 +25,22 @@ export function LoginRedirectGate({
 
   if (!hasHydrated) {
     return (
-      <GlassPanel className="space-y-4 bg-white/5 text-white">
-        <div className="h-5 w-24 rounded-full bg-white/10" />
-        <div className="h-8 w-1/3 rounded-full bg-white/10" />
-        <div className="h-20 rounded-2xl bg-white/5" />
+      <GlassPanel className="space-y-4 bg-white text-slate-800">
+        <div className="h-5 w-24 rounded-full bg-slate-100" />
+        <div className="h-8 w-1/3 rounded-full bg-slate-100" />
+        <div className="h-16 rounded-2xl bg-slate-50" />
       </GlassPanel>
     );
   }
 
   if (isAuthenticated) {
     return (
-      <GlassPanel className="bg-gradient-to-br from-slate-900/90 to-slate-900/40 text-white">
-        <p className="text-sm uppercase tracking-[0.4em] text-white/60">
+      <GlassPanel className="bg-gradient-to-br from-emerald-50 to-sky-50 text-slate-900">
+        <p className="text-sm uppercase tracking-[0.4em] text-emerald-700">
           Already Signed In
         </p>
         <h2 className="text-2xl font-semibold">홈으로 이동 중입니다.</h2>
-        <p className="text-sm text-white/70">
+        <p className="text-sm text-slate-600">
           이미 로그인된 상태라 로그인 페이지에 접근할 수 없습니다.
         </p>
       </GlassPanel>

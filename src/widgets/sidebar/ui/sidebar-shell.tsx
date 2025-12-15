@@ -26,11 +26,11 @@ export function SidebarShell({ children }: SidebarShellProps) {
   const toggleSidebar = () => setIsOpen((prev) => !prev);
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-950 via-slate-940 to-black text-white">
+    <div className="min-h-screen bg-linear-to-b from-sky-50 via-white to-emerald-50 text-slate-900">
       <button
         type="button"
         onClick={toggleSidebar}
-        className="fixed left-4 top-4 z-50 flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-white/80 backdrop-blur transition hover:border-white/40 hover:text-white lg:left-8"
+        className="fixed left-4 top-4 z-50 flex items-center gap-2 rounded-2xl border border-slate-200 bg-white/90 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-700 shadow-sm backdrop-blur transition hover:border-emerald-300 hover:bg-white lg:left-8"
       >
         {isOpen ? "Close" : "Menu"}
         <span className="text-lg">{isOpen ? "⟲" : "☰"}</span>
@@ -38,7 +38,7 @@ export function SidebarShell({ children }: SidebarShellProps) {
 
       {/* 모바일 드로어 */}
       <div
-        className={`fixed inset-y-0 left-0 z-40 w-full max-w-xs border-r border-white/10 bg-slate-900/95 p-6 backdrop-blur-2xl transition-transform duration-500 lg:hidden ${
+        className={`fixed inset-y-0 left-0 z-40 w-full max-w-xs border-r border-slate-200 bg-white/95 p-6 backdrop-blur-2xl transition-transform duration-500 lg:hidden ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -46,8 +46,8 @@ export function SidebarShell({ children }: SidebarShellProps) {
       </div>
 
       <div
-        className={`mx-auto flex w-full flex-col px-8 py-20 lg:flex-row ${
-          isOpen ? "gap-8 lg:gap-10" : ""
+        className={`mx-auto flex w-full flex-col px-6 py-12 lg:flex-row ${
+          isOpen ? "gap-6 lg:gap-8" : ""
         }`}
       >
         <div

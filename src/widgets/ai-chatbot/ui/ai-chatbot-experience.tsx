@@ -129,22 +129,22 @@ export function AiChatbotExperience() {
   };
 
   return (
-    <section className="space-y-6">
-      <GlassPanel className="space-y-4 bg-white/5">
+    <section className="space-y-5">
+      <GlassPanel className="space-y-3 bg-white">
         <div
           ref={scrollRef}
-          className="max-h-[550px] space-y-3 overflow-y-auto rounded-2xl border border-white/10 bg-black/20 p-4"
+          className="max-h-[520px] space-y-2.5 overflow-y-auto rounded-2xl border border-emerald-100 bg-emerald-50/50 p-3.5"
         >
           {messages.map((message) => (
             <div
               key={message.id}
               className={`flex flex-col gap-1 rounded-2xl border px-4 py-3 text-sm ${
                 message.role === "user"
-                  ? "items-end border-white/20 bg-white/10 text-white"
-                  : "items-start border-white/10 bg-white/5 text-white/80"
+                  ? "items-end border-emerald-200 bg-white text-emerald-900"
+                  : "items-start border-slate-200 bg-white text-slate-700"
               }`}
             >
-              <div className="flex w-full items-center justify-between text-[11px] uppercase tracking-[0.3em] text-white/50">
+              <div className="flex w-full items-center justify-between text-[11px] uppercase tracking-[0.3em] text-slate-500">
                 <span>{message.role === "user" ? "You" : "Assistant"}</span>
                 <span>{message.time}</span>
               </div>
@@ -156,26 +156,26 @@ export function AiChatbotExperience() {
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs uppercase tracking-[0.3em] text-white/50">
+          <label className="text-xs uppercase tracking-[0.3em] text-emerald-700">
             메시지 입력
           </label>
-          <div className="rounded-3xl border border-white/15 bg-white/5 p-3">
+          <div className="rounded-3xl border border-emerald-100 bg-white p-3">
             <textarea
               value={input}
               onChange={(event) => setInput(event.target.value)}
               onKeyDown={handleKeyDown}
               rows={3}
-              className="w-full resize-none rounded-2xl border border-transparent bg-transparent p-3 text-sm text-white outline-none focus:border-white/40"
+              className="w-full resize-none rounded-2xl border border-transparent bg-transparent p-3 text-sm text-slate-900 outline-none focus:border-emerald-200"
               placeholder="Shift+Enter로 줄바꿈, Enter로 전송"
             />
-            {error && <p className="px-3 text-xs text-rose-300">{error}</p>}
-            <div className="mt-3 flex items-center justify-between text-xs text-white/60">
+            {error && <p className="px-3 text-xs text-rose-500">{error}</p>}
+            <div className="mt-2.5 flex items-center justify-between text-xs text-slate-600">
               <span>{isSending ? "응답 생성 중..." : "준비 완료"}</span>
               <button
                 type="button"
                 onClick={handleSend}
                 disabled={!input.trim() || isSending}
-                className="inline-flex items-center gap-2 rounded-2xl border border-white/40 px-4 py-2 font-medium text-white transition hover:border-white disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-600 px-4 py-2 font-medium text-white transition hover:border-emerald-300 hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 보내기 ↵
               </button>
