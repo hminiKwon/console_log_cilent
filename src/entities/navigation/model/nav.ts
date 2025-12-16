@@ -46,6 +46,11 @@ export const NAV_SECTIONS: NavSection[] = [
         href: "/ai-chatbot",
         requiresAuth: true,
       },
+      {
+        label: "화상 통화",
+        desc: "4인 WebRTC",
+        href: "/rooms",
+      },
     ],
   },
 ];

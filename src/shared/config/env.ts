@@ -15,4 +15,9 @@ const fallbackBaseUrl =
 export const env = {
   appEnv: APP_ENV,
   apiBaseUrl: API_BY_ENV[APP_ENV] ?? fallbackBaseUrl,
+  signalingWsUrl: process.env.NEXT_PUBLIC_SIGNALING_WS_URL ?? "",
+  signalingWsProtocol: process.env.NEXT_PUBLIC_SIGNALING_WS_PROTOCOL ?? "janus-protocol",
+  turnUrl: process.env.NEXT_PUBLIC_TURN_URL ?? "",
+  turnUsername: process.env.NEXT_PUBLIC_TURN_USERNAME ?? "",
+  turnCredential: process.env.NEXT_PUBLIC_TURN_CREDENTIAL ?? "",
 };
