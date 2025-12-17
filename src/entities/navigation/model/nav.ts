@@ -35,6 +35,11 @@ export const NAV_SECTIONS: NavSection[] = [
         desc: "입력 → 예쁘게 보기",
         href: "/json-formatter",
       },
+      {
+        label: "텍스트 암호화",
+        desc: "선택 방식으로 인코딩",
+        href: "/text-encoder",
+      },
     ],
   },
   {
