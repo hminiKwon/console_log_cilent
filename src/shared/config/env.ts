@@ -1,23 +1,19 @@
 type AppEnv = "development" | "production" | (string & {});
 
 const APP_ENV = (process.env.NEXT_PUBLIC_APP_ENV ??
-  process.env.NODE_ENV ??
-  "development") as AppEnv;
+	process.env.NODE_ENV ??
+	"development") as AppEnv;
 
-const API_BY_ENV: Record<AppEnv, string | undefined> = {
-  development: process.env.NEXT_PUBLIC_API_BASE_URL_DEV,
-  production: process.env.NEXT_PUBLIC_API_BASE_URL_PRD,
-};
-
-const fallbackBaseUrl =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4000";
+const apiBaseUrl =
+	process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4000";
 
 export const env = {
-  appEnv: APP_ENV,
-  apiBaseUrl: API_BY_ENV[APP_ENV] ?? fallbackBaseUrl,
-  signalingWsUrl: process.env.NEXT_PUBLIC_SIGNALING_WS_URL ?? "",
-  signalingWsProtocol: process.env.NEXT_PUBLIC_SIGNALING_WS_PROTOCOL ?? "janus-protocol",
-  turnUrl: process.env.NEXT_PUBLIC_TURN_URL ?? "",
-  turnUsername: process.env.NEXT_PUBLIC_TURN_USERNAME ?? "",
-  turnCredential: process.env.NEXT_PUBLIC_TURN_CREDENTIAL ?? "",
+	appEnv: APP_ENV,
+	apiBaseUrl: apiBaseUrl,
+	signalingWsUrl: process.env.NEXT_PUBLIC_SIGNALING_WS_URL ?? "",
+	signalingWsProtocol:
+		process.env.NEXT_PUBLIC_SIGNALING_WS_PROTOCOL ?? "janus-protocol",
+	turnUrl: process.env.NEXT_PUBLIC_TURN_URL ?? "",
+	turnUsername: process.env.NEXT_PUBLIC_TURN_USERNAME ?? "",
+	turnCredential: process.env.NEXT_PUBLIC_TURN_CREDENTIAL ?? "",
 };

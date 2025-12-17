@@ -23,6 +23,16 @@ export const NAV_SECTIONS: NavSection[] = [
     items: [{ label: "홈", desc: "전체 개요", href: "/" }],
   },
   {
+    title: "운세",
+    items: [
+      {
+        label: "오늘의 운세",
+        desc: "생년월일로 점 보기",
+        href: "/fortune",
+      },
+    ],
+  },
+  {
     title: "콘텐츠",
     items: [
       {

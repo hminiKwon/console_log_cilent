@@ -42,53 +42,59 @@ function HeroPanel() {
 }
 
 function QuickActions() {
+  const actions = [
+    {
+      title: "오늘의 운세",
+      desc: "생년월일로 오늘의 운세 보기",
+      href: "/fortune",
+      tag: "운세",
+    },
+    {
+      title: "화상 통화",
+      desc: "4인 WebRTC 룸 생성 및 참여",
+      href: "/rooms",
+      tag: "콘텐츠",
+    },
+    {
+      title: "JSON 포맷터",
+      desc: "JSON을 예쁘게 정렬",
+      href: "/json-formatter",
+      tag: "도구",
+    },
+    {
+      title: "텍스트 암호화",
+      desc: "Base64/URL/SHA-256 변환",
+      href: "/text-encoder",
+      tag: "도구",
+    },
+  ];
+
   return (
     <div className="grid gap-5 md:grid-cols-2">
-      <GlassPanel className="bg-white">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">
-              콘텐츠
-            </p>
-            <h3 className="text-xl font-semibold tracking-tight text-slate-900">
-              화상 통화
-            </h3>
+      {actions.map((action) => (
+        <GlassPanel key={action.href} className="bg-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">
+                {action.tag}
+              </p>
+              <h3 className="text-xl font-semibold tracking-tight text-slate-900">
+                {action.title}
+              </h3>
+            </div>
+            <span className="text-xs text-slate-500">바로가기</span>
           </div>
-          <span className="text-xs text-slate-500">실시간</span>
-        </div>
-        <div className="mt-3 space-y-2 text-sm text-slate-700">
-          <p>4인 WebRTC 룸을 만들고 바로 참여해 보세요.</p>
-          <a
-            href="/rooms"
-            className="inline-flex items-center gap-2 text-emerald-700 underline decoration-emerald-200 decoration-2 underline-offset-4"
-          >
-            화상 통화 시작하기 <span aria-hidden>→</span>
-          </a>
-        </div>
-      </GlassPanel>
-
-      <GlassPanel className="bg-white">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">
-              실험실
-            </p>
-            <h3 className="text-xl font-semibold tracking-tight text-slate-900">
-              AI 챗봇
-            </h3>
+          <div className="mt-3 space-y-2 text-sm text-slate-700">
+            <p>{action.desc}</p>
+            <a
+              href={action.href}
+              className="inline-flex items-center gap-2 text-emerald-700 underline decoration-emerald-200 decoration-2 underline-offset-4"
+            >
+              이동하기 <span aria-hidden>→</span>
+            </a>
           </div>
-          <span className="text-xs text-slate-500">프로토타입</span>
-        </div>
-        <div className="mt-3 space-y-2 text-sm text-slate-700">
-          <p>대화형 실험과 프롬프트 테스트를 진행해 보세요.</p>
-          <a
-            href="/ai-chatbot"
-            className="inline-flex items-center gap-2 text-emerald-700 underline decoration-emerald-200 decoration-2 underline-offset-4"
-          >
-            AI 챗봇 열기 <span aria-hidden>→</span>
-          </a>
-        </div>
-      </GlassPanel>
+        </GlassPanel>
+      ))}
     </div>
   );
 }
