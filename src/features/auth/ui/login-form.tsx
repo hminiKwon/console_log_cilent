@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { GlassPanel } from "@/shared/ui";
 import { AUTH_SOCIAL_PROVIDERS, login } from "@/features/auth";
-import { getHttpErrorMessage } from "@/shared/util";
+import { getHttpErrorMessage } from "@/shared/lib";
 
 export function LoginForm() {
   const router = useRouter();

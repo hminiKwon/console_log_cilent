@@ -1,5 +1,5 @@
 import { httpClient } from "@/shared/api";
-import { hashPassword } from "@/shared/util";
+import { hashPassword } from "@/shared/lib";
 import { accessTokenStore } from "@/entities/session";
 
 export type LoginRequest = {
