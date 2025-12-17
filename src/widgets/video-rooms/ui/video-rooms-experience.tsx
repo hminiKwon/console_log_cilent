@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
 	createRoom,
 	deleteRoom,
@@ -52,7 +52,7 @@ export function VideoRoomsExperience() {
 		setCallError(null);
 	};
 
-	const fetchRooms = async () => {
+	const fetchRooms = useCallback(async () => {
 		setIsLoading(true);
 		resetErrors();
 		try {
@@ -63,11 +63,11 @@ export function VideoRoomsExperience() {
 		} finally {
 			setIsLoading(false);
 		}
-	};
+	}, []);
 
 	useEffect(() => {
 		fetchRooms();
-	}, []);
+	}, [fetchRooms]);
 
 	const handleCreate = async () => {
 		resetErrors();
@@ -165,7 +165,7 @@ export function VideoRoomsExperience() {
 						onSubmit={handleCreate}
 						badge={createBadge}
 						passwordHelper={ROOM_PASSWORD_HELPER}
-						maxLimit={DEFAULT_MAX}
+						maxLimit={DEFAULT_MAX_PARTICIPANTS}
 					/>
 				</GlassPanel>
 

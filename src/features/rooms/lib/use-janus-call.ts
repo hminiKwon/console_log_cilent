@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Janus } from "janus-gateway";
 import { env } from "@/shared/config";
@@ -52,7 +53,8 @@ export function useJanusCall({ room, onError }: UseJanusCallParams) {
 			}
 			delete feedsRef.current[feedId];
 			setRemoteStreams((prev) => {
-				const { [String(feedId)]: _, ...rest } = prev;
+				const { [String(feedId)]: _removed, ...rest } = prev;
+				void _removed;
 				return rest;
 			});
 		};
@@ -268,7 +270,8 @@ export function useJanusCall({ room, onError }: UseJanusCallParams) {
 				}
 				const janusModule = await import("janus-gateway");
 				JanusLib = (janusModule as any).Janus ?? (janusModule as any).default;
-			} catch (err) {
+			} catch (_err) {
+				void _err;
 				safeOnError("Janus 라이브러리를 불러오지 못했습니다.");
 				return;
 			}
