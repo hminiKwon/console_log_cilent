@@ -1,6 +1,7 @@
 import { useJanusCall, type RoomJoinResponse } from "@/features/rooms";
 import { GlassPanel } from "@/shared/ui";
 import { VideoTile } from "./video-tile";
+import { useEffect } from "react";
 
 type CallPanelProps = {
 	room: RoomJoinResponse;
@@ -20,6 +21,12 @@ export function CallPanel({ room, onLeave, onError }: CallPanelProps) {
 		handleLeave();
 		onLeave();
 	};
+
+	useEffect(() => {
+		return () => {
+			handleLeave();
+		};
+	}, [handleLeave]);
 
 	return (
 		<GlassPanel className="space-y-3 bg-white">
