@@ -7,7 +7,11 @@ import { NAV_SECTIONS } from "@/entities/navigation";
 import { useSession } from "@/entities/session";
 import { logout } from "@/features/auth";
 
-export function SidebarNav() {
+type SidebarNavProps = {
+  onNavigate?: () => void;
+};
+
+export function SidebarNav({ onNavigate }: SidebarNavProps) {
   const pathname = usePathname();
   const { isAuthenticated, hasHydrated } = useSession();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -48,6 +52,7 @@ export function SidebarNav() {
         ) : !isAuthenticated ? (
           <Link
             href="/login"
+            onClick={onNavigate}
             className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-100"
           >
             로그인 페이지
@@ -120,6 +125,7 @@ export function SidebarNav() {
                       <Link
                         key={item.label}
                         href={item.href}
+                        onClick={onNavigate}
                         className={`block rounded-2xl border px-4 py-4 transition ${
                           isActive
                             ? "border-emerald-200 bg-emerald-50 text-emerald-900"

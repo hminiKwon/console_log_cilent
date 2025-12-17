@@ -14,16 +14,24 @@ type SidebarShellProps = {
  */
 export function SidebarShell({ children }: SidebarShellProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setIsOpen(mediaQuery.matches);
+    const sync = () => {
+      setIsDesktop(mediaQuery.matches);
+      setIsOpen(mediaQuery.matches);
+    };
     sync();
     mediaQuery.addEventListener("change", sync);
     return () => mediaQuery.removeEventListener("change", sync);
   }, []);
 
   const toggleSidebar = () => setIsOpen((prev) => !prev);
+
+  const handleNavigate = () => {
+    if (!isDesktop) setIsOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-linear-to-b from-sky-50 via-white to-emerald-50 text-slate-900">
@@ -42,7 +50,7 @@ export function SidebarShell({ children }: SidebarShellProps) {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <SidebarNav />
+        <SidebarNav onNavigate={handleNavigate} />
       </div>
 
       <div
@@ -62,7 +70,7 @@ export function SidebarShell({ children }: SidebarShellProps) {
                 : "pointer-events-none opacity-0"
             }`}
           >
-            <SidebarNav />
+            <SidebarNav onNavigate={handleNavigate} />
           </div>
         </div>
         <main className="flex-1">{children}</main>
