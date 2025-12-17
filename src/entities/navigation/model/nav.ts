@@ -26,14 +26,14 @@ export const NAV_SECTIONS: NavSection[] = [
     title: "콘텐츠",
     items: [
       {
-        label: "일반 게시판",
-        desc: "타임라인",
-        href: "/board",
+        label: "화상 통화",
+        desc: "4인 WebRTC",
+        href: "/rooms",
       },
       {
-        label: "사진 게시판",
-        desc: "Masonry",
-        href: "/gallery",
+        label: "JSON 포맷터",
+        desc: "입력 → 예쁘게 보기",
+        href: "/json-formatter",
       },
     ],
   },
@@ -45,11 +45,6 @@ export const NAV_SECTIONS: NavSection[] = [
         desc: "대화형 실험",
         href: "/ai-chatbot",
         requiresAuth: true,
-      },
-      {
-        label: "화상 통화",
-        desc: "4인 WebRTC",
-        href: "/rooms",
       },
     ],
   },

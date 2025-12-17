@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Console Log Lab",
   description:
-    "Apple 감성 사이드바 기반 개인 홈 실험실 · 로그인/게시판/사진 갤러리 프로토타입",
+    "Apple 감성 사이드바 기반 개인 홈 실험실 · 로그인/실험 기능 프로토타입",
 };
 
 export default function RootLayout({

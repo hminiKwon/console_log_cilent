@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Janus } from "janus-gateway";
 import { env } from "@/shared/config";
 import type { RoomJoinResponse } from "../api";
-import { buildIceServers } from "../utils/janus-ice";
+import { buildIceServers } from "./janus-ice";
 import type { RemoteFeed, RemoteStreamsMap } from "../model/janus-types";
 
 type UseJanusCallParams = {

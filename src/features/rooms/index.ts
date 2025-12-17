@@ -10,5 +10,5 @@ export {
 	type RoomSummary,
 } from "./api";
 export { DEFAULT_MAX_PARTICIPANTS } from "./model/constants";
-export { isValidRoomPassword } from "./utils/password";
+export { isValidRoomPassword } from "./lib/password";
 export { useJanusCall } from "./lib/use-janus-call";

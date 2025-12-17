@@ -1,16 +1,10 @@
-import { BoardPreviewCard } from "@/features/board";
-import { GalleryPreviewCard } from "@/features/gallery";
 import { GlassPanel } from "@/shared/ui";
 
 export function DashboardShowcase() {
   return (
     <section className="flex-1 space-y-6">
       <HeroPanel />
-      <div className="grid gap-5 md:grid-cols-2">
-        <BoardPreviewCard />
-        <BoardPreviewCard />
-      </div>
-      <GalleryPreviewCard />
+      <QuickActions />
     </section>
   );
 }
@@ -44,5 +38,57 @@ function HeroPanel() {
         </div>
       </div>
     </GlassPanel>
+  );
+}
+
+function QuickActions() {
+  return (
+    <div className="grid gap-5 md:grid-cols-2">
+      <GlassPanel className="bg-white">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">
+              콘텐츠
+            </p>
+            <h3 className="text-xl font-semibold tracking-tight text-slate-900">
+              화상 통화
+            </h3>
+          </div>
+          <span className="text-xs text-slate-500">실시간</span>
+        </div>
+        <div className="mt-3 space-y-2 text-sm text-slate-700">
+          <p>4인 WebRTC 룸을 만들고 바로 참여해 보세요.</p>
+          <a
+            href="/rooms"
+            className="inline-flex items-center gap-2 text-emerald-700 underline decoration-emerald-200 decoration-2 underline-offset-4"
+          >
+            화상 통화 시작하기 <span aria-hidden>→</span>
+          </a>
+        </div>
+      </GlassPanel>
+
+      <GlassPanel className="bg-white">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">
+              실험실
+            </p>
+            <h3 className="text-xl font-semibold tracking-tight text-slate-900">
+              AI 챗봇
+            </h3>
+          </div>
+          <span className="text-xs text-slate-500">프로토타입</span>
+        </div>
+        <div className="mt-3 space-y-2 text-sm text-slate-700">
+          <p>대화형 실험과 프롬프트 테스트를 진행해 보세요.</p>
+          <a
+            href="/ai-chatbot"
+            className="inline-flex items-center gap-2 text-emerald-700 underline decoration-emerald-200 decoration-2 underline-offset-4"
+          >
+            AI 챗봇 열기 <span aria-hidden>→</span>
+          </a>
+        </div>
+      </GlassPanel>
+    </div>
   );
 }

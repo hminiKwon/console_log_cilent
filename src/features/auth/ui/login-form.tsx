@@ -41,8 +41,7 @@ export function LoginForm() {
           다시 만나 반가워요
         </h1>
         <p className="text-sm text-slate-600">
-          하나의 계정으로 일반/사진 게시판, 실험실 기능까지 모두 이용할 수
-          있어요.
+          하나의 계정으로 실험실 기능을 모두 이용할 수 있어요.
         </p>
       </header>
 

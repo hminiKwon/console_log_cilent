@@ -24,6 +24,6 @@ export const LOGIN_HIGHLIGHTS: LoginHighlight[] = [
   },
   {
     title: "세션 복원",
-    desc: "게시판/사진 갤러리 이동 시 인증 컨텍스트 유지",
+    desc: "AI 챗봇과 화상 통화 이동 시 인증 컨텍스트 유지",
   },
 ];
