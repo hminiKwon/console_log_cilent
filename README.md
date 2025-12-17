@@ -3,6 +3,7 @@
 Next.js 14 (App Router) + TypeScript playground that now follows Feature-Sliced Design (FSD) for predictable growth.
 
 ## Tech Stack
+
 - Next.js 14 (App Router)
 - TypeScript / ESLint (core-web-vitals)
 - Tailwind CSS (via `globals.css`)
@@ -25,6 +26,7 @@ src/
 ```
 
 ### Layer Rules
+
 1. Dependencies flow upward: `shared → entities → features → widgets → app/pages`.
 2. Even inside a layer, expose only an explicit public API (`index.ts`, `model`, `api`) per slice.
 3. Keep route segments (`src/app/**`) dependent on widgets/features, not on bare entities.
@@ -63,8 +65,6 @@ Create new slices under the appropriate layer and import them through the `@/` a
 1. 루트에 `.env.dev`, `.env.prd` 파일을 만들고 각각 `.env.dev.example`, `.env.prd.example` 내용을 복사한 뒤 값을 채워주세요.
    ```
    NEXT_PUBLIC_APP_ENV=development
-   NEXT_PUBLIC_API_BASE_URL_DEV=http://localhost:4000
-   NEXT_PUBLIC_API_BASE_URL_PRD=https://api.console-log.com
    NEXT_PUBLIC_API_BASE_URL=http://localhost:4000  # dev fallback 예시
    ```
 2. `src/shared/config/env.ts`가 현재 실행 환경(dev/prd)에 맞는 API 베이스 URL을 계산합니다.
