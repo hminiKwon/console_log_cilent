@@ -10,22 +10,22 @@ export function VideoTile({ label, stream, isLocal }: VideoTileProps) {
 	const videoRef = useRef<HTMLVideoElement | null>(null);
 
 	useEffect(() => {
-		const video = videoRef.current;
-		if (video) {
+		const currentVideo = videoRef.current;
+		if (currentVideo) {
 			if (stream) {
-				video.srcObject = stream;
-				video.play().catch(() => {
+				currentVideo.srcObject = stream;
+				currentVideo.play().catch(() => {
 					/* 모바일 브라우저 등에서 자동재생 차단 시 무시 */
 				});
 			} else {
 				// 스트림이 사라진 경우 srcObject를 명시적으로 해제
 				try {
-					video.pause();
+					currentVideo.pause();
 				} catch {
 					/* noop */
 				}
 				try {
-					(video as any).srcObject = null;
+					currentVideo.srcObject = null;
 				} catch {
 					/* noop */
 				}
@@ -34,15 +34,14 @@ export function VideoTile({ label, stream, isLocal }: VideoTileProps) {
 
 		return () => {
 			// 언마운트 시에도 재생 중지 및 srcObject 해제
-			const v = videoRef.current;
-			if (v) {
+			if (currentVideo) {
 				try {
-					v.pause();
+					currentVideo.pause();
 				} catch {
 					/* noop */
 				}
 				try {
-					(v as any).srcObject = null;
+					currentVideo.srcObject = null;
 				} catch {
 					/* noop */
 				}

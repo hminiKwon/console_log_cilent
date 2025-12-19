@@ -287,9 +287,10 @@ export function useJanusCall({ room, onError }: UseJanusCallParams) {
 			delete feedsRef.current[feedId];
 
 			setRemoteStreams((prev) => {
-				const { [String(feedId)]: _removed, ...rest } = prev;
-				remoteStreamsRef.current = rest;
-				return rest;
+				const next = { ...prev };
+				delete next[String(feedId)];
+				remoteStreamsRef.current = next;
+				return next;
 			});
 		},
 		[stopHandle, stopTracks]

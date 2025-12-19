@@ -2,12 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchTodayFortune } from "../api";
-import type {
-	FortuneCalendar,
-	FortuneGender,
-	FortuneRequest,
-	FortuneResponse,
-} from "../model/types";
+import type { FortuneRequest, FortuneResponse } from "../model/types";
 import { getHttpErrorMessage } from "@/shared/lib";
 
 export function useTodayFortune() {
